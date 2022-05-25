@@ -2,17 +2,17 @@ package com.picpay.desafio.contacts.ui
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.picpay.desafio.contacts.data.network.User
+import com.picpay.desafio.contacts.data.network.ContactNetworkModel
 import com.picpay.desafio.contacts.R
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_user.view.*
 
-class UserListItemViewHolder(
+class ContactListItemViewHolder(
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(user: User) {
+    fun bind(user: ContactNetworkModel) {
         itemView.name.text = user.name
         itemView.username.text = user.username
         itemView.progressBar.visibility = View.VISIBLE

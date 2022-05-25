@@ -24,7 +24,7 @@ object RetrofitModule {
             .build()
     }
 
-    val service: PicPayService by lazy {
-        retrofit.create(PicPayService::class.java)
+    val service: ContactService by lazy {
+        retrofit.create(ContactService::class.java)
     }
 }

@@ -6,7 +6,7 @@
 
     <!-- HOME FRAGMENT -->
     <fragment android:id="@+id/contactsFragment"
-        android:name="com.picpay.desafio.contacts.ui.UserFragment"
+        android:name="com.picpay.desafio.contacts.ui.ContactFragment"
         android:label="ArchApp">
 
     </fragment>

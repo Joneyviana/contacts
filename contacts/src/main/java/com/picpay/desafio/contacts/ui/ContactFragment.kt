@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.contacts.data.network.RetrofitModule.service
-import com.picpay.desafio.contacts.data.network.User
+import com.picpay.desafio.contacts.data.network.ContactNetworkModel
 import com.picpay.desafio.contacts.R
 import com.picpay.desafio.contacts.databinding.FragmentContactsBinding
 import retrofit2.Call
@@ -16,21 +16,21 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class UserFragment : Fragment() {
+class ContactFragment : Fragment() {
 
     private var binding: FragmentContactsBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = UserListAdapter()
+        val adapter = ContactListAdapter()
         binding?.recyclerView?.adapter = adapter
         binding?.recyclerView?.layoutManager = LinearLayoutManager(activity)
 
         binding?.userListProgressBar?.visibility = View.VISIBLE
-        service.getUsers()
-            .enqueue(object : Callback<List<User>> {
-                override fun onFailure(call: Call<List<User>>, t: Throwable) {
+        /*service.getContacts()
+            .enqueue(object : Callback<List<ContactNetworkModel>> {
+                override fun onFailure(call: Call<List<ContactNetworkModel>>, t: Throwable) {
                     val message = getString(R.string.error)
 
                     binding?.userListProgressBar?.visibility = View.GONE
@@ -40,12 +40,14 @@ class UserFragment : Fragment() {
                         .show()
                 }
 
-                override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                override fun onResponse(call: Call<List<ContactNetworkModel>>, response: Response<List<ContactNetworkModel>>) {
                     binding?.userListProgressBar?.visibility = View.GONE
 
                     adapter.users = response.body()!!
                 }
             })
+            */
+
     }
 
 
