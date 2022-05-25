@@ -9,7 +9,7 @@ import com.picpay.desafio.contacts.R
 
 class ContactListAdapter : RecyclerView.Adapter<ContactListItemViewHolder>() {
 
-    var users = emptyList<ContactNetworkModel>()
+    var contacts = emptyList<ContactPresentationModel>()
         set(value) {
             val result = DiffUtil.calculateDiff(
                 ContactListDiffCallback(
@@ -29,8 +29,8 @@ class ContactListAdapter : RecyclerView.Adapter<ContactListItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ContactListItemViewHolder, position: Int) {
-        holder.bind(users[position])
+        holder.bind(contacts[position])
     }
 
-    override fun getItemCount(): Int = users.size
+    override fun getItemCount(): Int = contacts.size
 }

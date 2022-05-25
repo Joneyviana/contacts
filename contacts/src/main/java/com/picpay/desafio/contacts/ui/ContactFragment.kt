@@ -4,21 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.picpay.desafio.contacts.data.network.RetrofitModule.service
-import com.picpay.desafio.contacts.data.network.ContactNetworkModel
-import com.picpay.desafio.contacts.R
 import com.picpay.desafio.contacts.databinding.FragmentContactsBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ContactFragment : Fragment() {
 
     private var binding: FragmentContactsBinding? = null
+    private val viewModel: ContactViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,6 +29,15 @@ class ContactFragment : Fragment() {
         binding?.recyclerView?.layoutManager = LinearLayoutManager(activity)
 
         binding?.userListProgressBar?.visibility = View.VISIBLE
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect {
+                    binding?.userListProgressBar?.isVisible = it.isLoading
+                    adapter.contacts = it.contacts
+                }
+            }
+        }
         /*service.getContacts()
             .enqueue(object : Callback<List<ContactNetworkModel>> {
                 override fun onFailure(call: Call<List<ContactNetworkModel>>, t: Throwable) {

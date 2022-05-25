@@ -4,8 +4,8 @@ import androidx.recyclerview.widget.DiffUtil
 import com.picpay.desafio.contacts.data.network.ContactNetworkModel
 
 class ContactListDiffCallback(
-    private val oldList: List<ContactNetworkModel>,
-    private val newList: List<ContactNetworkModel>
+    private val oldList: List<ContactPresentationModel>,
+    private val newList: List<ContactPresentationModel>
 ) : DiffUtil.Callback() {
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

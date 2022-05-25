@@ -12,12 +12,12 @@ class ContactListItemViewHolder(
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(user: ContactNetworkModel) {
-        itemView.name.text = user.name
-        itemView.username.text = user.username
+    fun bind(contact: ContactPresentationModel) {
+        itemView.name.text = contact.name
+        itemView.username.text = contact.username
         itemView.progressBar.visibility = View.VISIBLE
         Picasso.get()
-            .load(user.img)
+            .load(contact.image)
             .error(R.drawable.ic_round_account_circle)
             .into(itemView.picture, object : Callback {
                 override fun onSuccess() {
